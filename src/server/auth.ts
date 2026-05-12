@@ -24,7 +24,7 @@ export const { handlers, signIn, signOut, auth: actualAuth } = NextAuth({
   callbacks: {
     session({ session, user }) {
       session.user.id = user.id
-      session.user.role = (user as { role: string }).role
+      session.user.role = (user as { role: any }).role
       return session
     },
   },
@@ -41,6 +41,7 @@ export const auth = async () => {
       name: "Mock Admin",
       email: "admin@ras.test",
       role: "SUPER_ADMIN",
+      image: null as string | null,
     },
     expires: "9999-12-31T23:59:59.999Z",
   }
